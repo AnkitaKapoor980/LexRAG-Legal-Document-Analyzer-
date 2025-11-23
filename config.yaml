@@ -1,0 +1,78 @@
+paths:
+  root_dir: .
+  raw_acts_dir: data/raw/acts
+  raw_cases_dir: data/raw/cases
+  raw_contracts_dir: data/raw/contracts
+  processed_text_dir: data/processed/cleaned_texts
+  metadata_dir: data/processed/metadata
+  embeddings_dir: data/embeddings/faiss_index
+  logs_dir: logs
+
+data_sources:
+  india_code:
+    acts:
+      - title: "Indian Penal Code 1860"
+        url: "https://www.indiacode.nic.in/show-data?actid=AC_CEN_5_23_00001_186045_1523268198141&sectionId=6178&sectionno=1&orderno=1"
+      - title: "Code of Criminal Procedure 1973"
+        url: "https://www.indiacode.nic.in/handle/123456789/2263"
+      - title: "Code of Civil Procedure 1908"
+        url: "https://www.indiacode.nic.in/handle/123456789/2264"
+      - title: "Indian Evidence Act 1872"
+        url: "https://www.indiacode.nic.in/handle/123456789/2287"
+      - title: "Contract Act 1872"
+        url: "https://www.indiacode.nic.in/handle/123456789/2187"
+      - title: "Transfer of Property Act 1882"
+        url: "https://www.indiacode.nic.in/handle/123456789/2182"
+      - title: "Specific Relief Act 1963"
+        url: "https://www.indiacode.nic.in/handle/123456789/2222"
+      - title: "Companies Act 2013"
+        url: "https://www.indiacode.nic.in/show-data?actid=AC_CEN_12_13_00025_201318_1517807320331&sectionId=9697&sectionno=1"
+      - title: "Information Technology Act 2000"
+        url: "https://www.indiacode.nic.in/handle/123456789/13116"
+      - title: "Income Tax Act 1961"
+        url: "https://www.indiacode.nic.in/handle/123456789/15269"
+    min_documents: 10
+  indian_kanoon:
+    queries:
+      - "contract termination Supreme Court"
+      - "property rights Supreme Court judgments"
+      - "IPC Section 302 interpretation"
+      - "fundamental rights enforcement"
+      - "arbitration and conciliation act cases"
+    min_documents: 60
+  cuad:
+    dataset_urls:
+      - "https://huggingface.co/datasets/lxuechen/cuad/resolve/main/data.zip"
+    min_documents: 30
+
+preprocessing:
+  chunk_size: 450
+  chunk_overlap: 75
+  spacy_model: "en_core_web_sm"
+  lowercase_for_embeddings: true
+  preserve_original: true
+  max_document_length: 500000
+
+embedding:
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  faiss_index_type: "IndexFlatIP"
+  normalize_embeddings: true
+  index_path: "data/embeddings/faiss_index/lexrag.index"
+  metadata_path: "data/embeddings/faiss_index/metadata_map.json"
+
+rate_limit:
+  requests_per_minute: 15
+  max_retries: 3
+  backoff_factor: 2.0
+  timeout_seconds: 30
+
+ocr:
+  language: "eng"
+  tesseract_cmd: ""
+  dpi: 300
+
+pipeline:
+  skip_data_collection_if_exists: true
+  skip_preprocessing_if_exists: false
+  skip_embedding_if_exists: false
+

@@ -62,11 +62,7 @@ LexRAG-Legal-Document-Analyzer/
    ```
 
 4. **Set up environment variables**:
-   Create `.env` file in project root:
-   ```env
-   GROQ_API_KEY=your_groq_api_key_here
-   GROQ_MODEL=llama-3.1-8b-instant
-   ```
+   Create `.env` file in project root.
 
 ---
 
@@ -102,34 +98,14 @@ python scripts/run_phase2_api.py
 # http://localhost:8000/docs
 ```
 
-### Phase 3: Frontend (To Be Built)
-
+### Phase 3: Frontend 
 ```powershell
-# Once implemented:
-streamlit run src/phase3_frontend/app.py
+# streamlit run src/phase3_frontend/app.py
 ```
 
 ---
 
-## 🧪 Testing
-
-### Phase 1 Tests
-```powershell
-pytest tests/ -v
-```
-
-### Phase 2 Tests
-```powershell
-# Quick smoke test
-python -m pytest tests/phase2/test_agents.py -v
-
-# Comprehensive test with real contract
-python -m pytest tests/phase2/comprehensive_test.py -v
-```
-
----
-
-## 🔧 Configuration
+## Configuration
 
 Edit `config.yaml` to adjust:
 - Embedding model
@@ -139,34 +115,10 @@ Edit `config.yaml` to adjust:
 
 ---
 
-## 📊 Current Status
-
-- ✅ **Phase 1**: Complete - FAISS index with 2,669 chunks ready
-- ✅ **Phase 2**: Complete - All 5 agents functional, API running
-- ⏳ **Phase 3**: To be implemented - Frontend integration needed
-
----
-
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Phase 1**: spaCy, sentence-transformers, FAISS, BeautifulSoup
 - **Phase 2**: LangChain, Groq API, FastAPI, Pydantic
 - **Phase 3**: Streamlit (planned)
 
----
 
-## 📝 License & Notes
-
-- All scraping respects robots.txt
-- Rate limiting implemented for API calls
-- Free tier Groq API suitable for development/demo
-
----
-
-## 🤝 Contributing
-
-See documentation in `docs/` folder for each phase's implementation details.
-
----
-
-**For detailed setup and usage, see [docs/README.md](docs/README.md)**

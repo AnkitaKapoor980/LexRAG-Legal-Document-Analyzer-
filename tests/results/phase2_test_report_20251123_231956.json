@@ -1,0 +1,212 @@
+{
+  "summary": {
+    "test_date": "2025-11-23T23:15:54.833139",
+    "duration_seconds": 241.599793,
+    "total_tests": 6,
+    "passed": 6,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "status": "PASS"
+  },
+  "results": [
+    {
+      "test_name": "Clause Extractor",
+      "passed": true,
+      "details": {
+        "total_clauses_extracted": 26,
+        "clause_types_found": [
+          "termination",
+          "payment",
+          "miscellaneous",
+          "intellectual_property",
+          "liability",
+          "governing_law",
+          "force_majeure",
+          "confidentiality",
+          "arbitration",
+          "services"
+        ],
+        "sample_clauses": [
+          {
+            "type": "termination",
+            "text_preview": "1. TERM AND TERMINATION\n1.1 This Agreement shall commence on [Start Date] and shall continue for a p...",
+            "importance": "high"
+          },
+          {
+            "type": "services",
+            "text_preview": "2. SERVICES AND DELIVERABLES\n2.1 The Service Provider shall provide software development services as...",
+            "importance": "medium"
+          },
+          {
+            "type": "payment",
+            "text_preview": "3. COMPENSATION AND PAYMENT\n3.1 The Client agrees to pay the Service Provider a total fee of INR 50,...",
+            "importance": "high"
+          },
+          {
+            "type": "intellectual_property",
+            "text_preview": "4. INTELLECTUAL PROPERTY RIGHTS\n4.1 All intellectual property rights in the deliverables shall vest ...",
+            "importance": "medium"
+          },
+          {
+            "type": "confidentiality",
+            "text_preview": "5. CONFIDENTIALITY\n5.1 Both parties agree to maintain confidentiality of all proprietary information...",
+            "importance": "high"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-11-23T23:15:57.594132"
+    },
+    {
+      "test_name": "Risk Analyzer",
+      "passed": true,
+      "details": {
+        "clauses_analyzed": 3,
+        "risk_distribution": {
+          "low": 3
+        },
+        "sample_analyses": [
+          {
+            "clause_type": "termination",
+            "risk_level": "low",
+            "explanation": "The risk level is low because the termination clause provides clear notice periods and conditions fo"
+          },
+          {
+            "clause_type": "services",
+            "risk_level": "low",
+            "explanation": "The risk level is low because the clause clearly outlines the scope of services, standards for deliv"
+          },
+          {
+            "clause_type": "payment",
+            "risk_level": "low",
+            "explanation": "The clause outlines a clear payment schedule with specific milestones and deadlines, reducing the ri"
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-11-23T23:16:01.674180"
+    },
+    {
+      "test_name": "Compliance Checker",
+      "passed": true,
+      "details": {
+        "clauses_checked": 3,
+        "compliance_distribution": {
+          "requires_review": 2,
+          "compliant": 1
+        },
+        "citations_found": 15,
+        "sample_citations": [
+          {
+            "chunk_id": "41208502_chunk_0007",
+            "title": "Pipavav Energy Pvt Ltd vs Madhavi Procon Pvt Ltd on 21 December, 2018",
+            "source": "C:\\Users\\Ankita Kapoor\\OneDrive\\Desktop\\Academics\\4th Year\\ET 401\\P4\\lexrag\\data\\raw\\cases\\41208502.html",
+            "year": "",
+            "similarity_score": 0.5627465844154358
+          },
+          {
+            "chunk_id": "128900_chunk_0017",
+            "title": "P.H.Paul Manoj Pandian vs Mr.P.Veldurai on 2 December, 2008",
+            "source": "C:\\Users\\Ankita Kapoor\\OneDrive\\Desktop\\Academics\\4th Year\\ET 401\\P4\\lexrag\\data\\raw\\cases\\128900.html",
+            "year": "",
+            "similarity_score": 0.53898024559021
+          },
+          {
+            "chunk_id": "128900_chunk_0023",
+            "title": "P.H.Paul Manoj Pandian vs Mr.P.Veldurai on 2 December, 2008",
+            "source": "C:\\Users\\Ankita Kapoor\\OneDrive\\Desktop\\Academics\\4th Year\\ET 401\\P4\\lexrag\\data\\raw\\cases\\128900.html",
+            "year": "",
+            "similarity_score": 0.531936764717102
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-11-23T23:16:13.071017"
+    },
+    {
+      "test_name": "Summarizer",
+      "passed": true,
+      "details": {
+        "summary_length": 704,
+        "key_parties_count": 2,
+        "main_obligations_count": 4,
+        "key_terms_count": 7,
+        "risk_factors_count": 3,
+        "summary_preview": "This Service Agreement is between ABC Technologies Private Limited (Service Provider) and XYZ Solutions Pvt. Ltd. (Client) for software development services. The agreement outlines the terms and conditions for the services, including compensation, intellectual property rights, confidentiality, liabi...",
+        "key_parties": [
+          "ABC Technologies Private Limited (Service Provider)",
+          "XYZ Solutions Pvt. Ltd. (Client)"
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-11-23T23:16:15.805964"
+    },
+    {
+      "test_name": "Q&A Agent",
+      "passed": true,
+      "details": {
+        "questions_answered": 3,
+        "average_answer_length": 255.33333333333334,
+        "answers": [
+          {
+            "question": "What is the Indian Contract Act 1872?",
+            "answer_length": 175,
+            "confidence": "high",
+            "sources_count": 5,
+            "answer_preview": "The Indian Contract Act 1872 is a legislation that governs contracts in India, outlining the terms and conditions under which contracts can be formed, performed, and enforced...."
+          },
+          {
+            "question": "What are the provisions for arbitration in India?",
+            "answer_length": 290,
+            "confidence": "high",
+            "sources_count": 5,
+            "answer_preview": "The provisions for arbitration in India are primarily governed by the Arbitration and Conciliation Act, 1996. This Act provides a framework for the conduct of arbitration proceedings, including the ap..."
+          },
+          {
+            "question": "What is the Companies Act 2013?",
+            "answer_length": 301,
+            "confidence": "high",
+            "sources_count": 5,
+            "answer_preview": "The Companies Act 2013 is a legislation that governs the incorporation, management, and regulation of companies in India. It provides a framework for the formation, operation, and winding up of compan..."
+          }
+        ]
+      },
+      "error": null,
+      "timestamp": "2025-11-23T23:16:22.428214"
+    },
+    {
+      "test_name": "Full Pipeline",
+      "passed": true,
+      "details": {
+        "total_clauses": 26,
+        "risk_distribution": {
+          "low": 18,
+          "medium": 7,
+          "high": 1
+        },
+        "compliance_distribution": {
+          "compliant": 15,
+          "non-compliant": 0,
+          "requires_review": 11
+        },
+        "summary_generated": true,
+        "statistics": {
+          "total_clauses": 26,
+          "risk_distribution": {
+            "low": 18,
+            "medium": 7,
+            "high": 1
+          },
+          "compliance_distribution": {
+            "compliant": 15,
+            "non-compliant": 0,
+            "requires_review": 11
+          }
+        }
+      },
+      "error": null,
+      "timestamp": "2025-11-23T23:19:56.432201"
+    }
+  ],
+  "errors": []
+}

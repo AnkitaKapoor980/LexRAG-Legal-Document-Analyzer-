@@ -1,90 +1,172 @@
 # LexRAG – Legal Document Analyzer
 
-LexRAG is a Retrieval-Augmented Generation (RAG) pipeline tailored for Indian legal research. This repository contains all three phases of the system, with Phase 1 (data foundation) fully implemented in this deliverable.
+A Retrieval-Augmented Generation (RAG) system for analyzing Indian legal documents, extracting clauses, assessing risks, checking compliance, and answering legal questions.
 
-## Repository Layout
+## 🎯 Project Overview
+
+**LexRAG** is a three-phase legal document analysis system:
+
+- **Phase 1** - Data Foundation: Legal corpus collection, preprocessing, and embedding generation
+- **Phase 2** - RAG & Agents: Five specialized agents for document analysis with FastAPI backend
+- **Phase 3** - Frontend: Streamlit web application for user interaction
+
+---
+
+## 📁 Project Structure
 
 ```
-lexrag/
-├── data/                    # Raw, processed, and embedded corpora
+LexRAG-Legal-Document-Analyzer/
 ├── src/
-│   ├── phase1_preprocessing  # Data collection, cleaning, embeddings
-│   ├── phase2_agents         # (Placeholder) RAG agents
-│   └── phase3_frontend       # (Placeholder) UI
-├── scripts/                 # Helper scripts (pipeline + validation)
-├── tests/                   # Unit tests
-├── config.yaml              # Runtime configuration
-└── requirements.txt         # Dependencies
+│   ├── phase1_preprocessing/  # Data collection, cleaning, embeddings
+│   ├── phase2_agents/         # RAG agents & FastAPI backend
+│   └── phase3_frontend/       # Streamlit frontend (placeholder)
+├── data/
+│   ├── raw/                   # Raw legal documents
+│   ├── processed/             # Cleaned and chunked texts
+│   └── embeddings/            # FAISS index and metadata
+├── scripts/                   # Utility scripts
+├── tests/
+│   ├── phase1/                # Phase 1 tests
+│   ├── phase2/                # Phase 2 tests
+│   └── results/               # Test results
+├── docs/                      # Documentation
+├── logs/                      # Application logs
+├── config.yaml                # Configuration
+└── requirements.txt           # Dependencies
 ```
 
-## Phase 1 Overview
+---
 
-Phase 1 consolidates three legal data sources:
+## 🚀 Quick Start
 
-- **India Code**: 10–15 major acts
-- **Indian Kanoon**: 50–100 case law documents
-- **CUAD**: Contract samples
+### Prerequisites
 
-The pipeline performs:
+- Python 3.10+
+- Virtual environment
+- Groq API key (free tier available)
 
-1. **Collection** – HTTP scraping/downloading with rate limiting, resuming, and metadata capture.
-2. **Preprocessing** – OCR/PDF extraction, cleaning, tokenization, and chunking with contextual overlap.
-3. **Embedding** – Sentence-transformer embeddings stored in a FAISS vector index with metadata mapping.
+### Installation
 
-Outputs are persisted under `data/processed/` and `data/embeddings/` for reuse.
+1. **Clone repository** (if applicable) or navigate to project directory
 
-## Getting Started
-
-1. **Create environment & install dependencies**
-
-   ```bash
+2. **Create virtual environment**:
+   ```powershell
    python -m venv .venv
-   .venv\Scripts\activate  # Windows
+   .venv\Scripts\Activate
+   ```
+
+3. **Install dependencies**:
+   ```powershell
    pip install -r requirements.txt
    python -m spacy download en_core_web_sm
    ```
 
-2. **Configure**
-
-   Update `config.yaml` to adjust URLs, chunk sizes, embedding model, or directories.
-
-3. **Run Phase 1 pipeline**
-
-   ```bash
-   python scripts/run_phase1_pipeline.py
+4. **Set up environment variables**:
+   Create `.env` file in project root:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   GROQ_MODEL=llama-3.1-8b-instant
    ```
 
-   Use `--force-refresh` to re-run collection or `--skip-embeddings` to stop after preprocessing.
+---
 
-   You can also temporarily override the embedding model at runtime without editing `config.yaml` by setting the
-   `EMBEDDING_MODEL` environment variable or using the new `--embedding-model` CLI flag. If you change the model,
-   remember to rebuild embeddings (use `--force-refresh` or remove existing index files) because embedding vectors
-   and dimensions will differ between models.
+## 📚 Documentation
 
-4. **Validate retrieval quality**
+See **[docs/README.md](docs/README.md)** for complete documentation:
 
-   ```bash
-   python scripts/run_retrieval.py --top-k 5
-   ```
+- **[Phase 1 Start Guide](docs/PHASE1_START.md)** - Run data pipeline
+- **[Phase 2 Quick Start](docs/PHASE2_QUICKSTART.md)** - API setup and usage
+- **[Phase 3 Integration Guide](docs/PHASE3_HANDOFF.md)** - Frontend integration
 
-## Testing
+---
 
+## 🏃 Running the System
+
+### Phase 1: Data Pipeline (Already Complete)
+
+```powershell
+# Run Phase 1 pipeline (if needed)
+python scripts/run_phase1_pipeline.py --force-refresh
+
+# Test retrieval
+python scripts/run_retrieval.py --top-k 5
 ```
-pytest
+
+### Phase 2: Start API Backend
+
+```powershell
+# Start FastAPI server
+python scripts/run_phase2_api.py
+
+# API will be available at:
+# http://localhost:8000/docs
 ```
 
-Unit tests cover preprocessing utilities, embedding generation, and retrieval helpers (with mocking where external services are involved).
+### Phase 3: Frontend (To Be Built)
 
-## Phase 2 & 3 Collaboration
+```powershell
+# Once implemented:
+streamlit run src/phase3_frontend/app.py
+```
 
-- See `INTEGRATION_GUIDE.md` for detailed instructions on consuming the FAISS index and metadata (Phase 2) and wired data access for the frontend (Phase 3).
-- Placeholders in `src/phase2_agents/` and `src/phase3_frontend/` outline integration contracts and expected entry points.
+---
 
-## Notes
+## 🧪 Testing
 
-- All scraping obeys robots.txt guidance and uses configurable rate limiting.
-- The pipeline is resumable; already-downloaded files are skipped unless `--force-refresh` is provided.
-- Logs go to `logs/phase1.log` and stdout for quick triage.
+### Phase 1 Tests
+```powershell
+pytest tests/ -v
+```
 
-For questions or contributions, please open an issue or PR referencing the relevant phase. Happy researching!
+### Phase 2 Tests
+```powershell
+# Quick smoke test
+python -m pytest tests/phase2/test_agents.py -v
 
+# Comprehensive test with real contract
+python -m pytest tests/phase2/comprehensive_test.py -v
+```
+
+---
+
+## 🔧 Configuration
+
+Edit `config.yaml` to adjust:
+- Embedding model
+- Chunk sizes
+- Data sources
+- Paths
+
+---
+
+## 📊 Current Status
+
+- ✅ **Phase 1**: Complete - FAISS index with 2,669 chunks ready
+- ✅ **Phase 2**: Complete - All 5 agents functional, API running
+- ⏳ **Phase 3**: To be implemented - Frontend integration needed
+
+---
+
+## 🛠️ Technologies Used
+
+- **Phase 1**: spaCy, sentence-transformers, FAISS, BeautifulSoup
+- **Phase 2**: LangChain, Groq API, FastAPI, Pydantic
+- **Phase 3**: Streamlit (planned)
+
+---
+
+## 📝 License & Notes
+
+- All scraping respects robots.txt
+- Rate limiting implemented for API calls
+- Free tier Groq API suitable for development/demo
+
+---
+
+## 🤝 Contributing
+
+See documentation in `docs/` folder for each phase's implementation details.
+
+---
+
+**For detailed setup and usage, see [docs/README.md](docs/README.md)**

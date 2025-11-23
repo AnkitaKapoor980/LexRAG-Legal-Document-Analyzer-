@@ -35,8 +35,9 @@ class ProcessedChunk:
 
 
 def clean_text(text: str) -> str:
-    text = re.sub(r"\s+", " ", text)
+    # Replace non-ASCII/printable characters first, then collapse whitespace.
     text = re.sub(r"[^\x20-\x7E]+", " ", text)
+    text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 

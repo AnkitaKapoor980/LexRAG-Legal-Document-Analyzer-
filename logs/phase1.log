@@ -1,0 +1,125 @@
+2025-11-23 12:22:15,009 | INFO | src.phase1_preprocessing.data_collector | Collecting India Code acts
+2025-11-23 12:22:15,938 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/show-data?actid=AC_CEN_5_23_00001_186045_1523268198141&sectionId=6178&sectionno=1&orderno=1). Retrying in 1.0s
+2025-11-23 12:22:19,087 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/show-data?actid=AC_CEN_5_23_00001_186045_1523268198141&sectionId=6178&sectionno=1&orderno=1). Retrying in 2.0s
+2025-11-23 12:22:23,087 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/show-data?actid=AC_CEN_5_23_00001_186045_1523268198141&sectionId=6178&sectionno=1&orderno=1). Retrying in 4.0s
+2025-11-23 12:22:27,165 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/show-data?actid=AC_CEN_5_23_00001_186045_1523268198141&sectionId=6178&sectionno=1&orderno=1). Retrying in 8.0s
+2025-11-23 12:22:35,166 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/show-data?actid=AC_CEN_5_23_00001_186045_1523268198141&sectionId=6178&sectionno=1&orderno=1 after 4 retries
+2025-11-23 12:22:35,232 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2263). Retrying in 1.0s
+2025-11-23 12:22:39,224 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2263). Retrying in 2.0s
+2025-11-23 12:22:43,231 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2263). Retrying in 4.0s
+2025-11-23 12:22:47,291 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2263). Retrying in 8.0s
+2025-11-23 12:22:55,292 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/handle/123456789/2263 after 4 retries
+2025-11-23 12:22:55,362 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2264). Retrying in 1.0s
+2025-11-23 12:22:59,484 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2264). Retrying in 2.0s
+2025-11-23 12:23:03,387 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2264). Retrying in 4.0s
+2025-11-23 12:23:07,761 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2264). Retrying in 8.0s
+2025-11-23 12:23:15,773 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/handle/123456789/2264 after 4 retries
+2025-11-23 12:23:15,859 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2287). Retrying in 1.0s
+2025-11-23 12:23:19,851 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2287). Retrying in 2.0s
+2025-11-23 12:23:24,143 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2287). Retrying in 4.0s
+2025-11-23 12:23:28,245 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2287). Retrying in 8.0s
+2025-11-23 12:23:36,246 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/handle/123456789/2287 after 4 retries
+2025-11-23 12:23:36,307 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2187). Retrying in 1.0s
+2025-11-23 12:24:01,174 | WARNING | src.phase1_preprocessing.data_collector | Request failed (502 Server Error: Bad Gateway for url: https://www.indiacode.nic.in/handle/123456789/2187). Retrying in 2.0s
+2025-11-23 12:24:03,237 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2187). Retrying in 4.0s
+2025-11-23 12:24:07,299 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2187). Retrying in 8.0s
+2025-11-23 12:24:15,300 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/handle/123456789/2187 after 4 retries
+2025-11-23 12:24:15,358 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2182). Retrying in 1.0s
+2025-11-23 12:24:19,387 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2182). Retrying in 2.0s
+2025-11-23 12:24:23,658 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2182). Retrying in 4.0s
+2025-11-23 12:24:27,731 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2182). Retrying in 8.0s
+2025-11-23 12:24:35,732 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/handle/123456789/2182 after 4 retries
+2025-11-23 12:24:35,800 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2222). Retrying in 1.0s
+2025-11-23 12:24:39,794 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2222). Retrying in 2.0s
+2025-11-23 12:24:44,089 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2222). Retrying in 4.0s
+2025-11-23 12:24:48,458 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/2222). Retrying in 8.0s
+2025-11-23 12:24:56,459 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/handle/123456789/2222 after 4 retries
+2025-11-23 12:24:56,520 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/show-data?actid=AC_CEN_12_13_00025_201318_1517807320331&sectionId=9697&sectionno=1). Retrying in 1.0s
+2025-11-23 12:25:00,526 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/show-data?actid=AC_CEN_12_13_00025_201318_1517807320331&sectionId=9697&sectionno=1). Retrying in 2.0s
+2025-11-23 12:25:04,523 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/show-data?actid=AC_CEN_12_13_00025_201318_1517807320331&sectionId=9697&sectionno=1). Retrying in 4.0s
+2025-11-23 12:25:08,596 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/show-data?actid=AC_CEN_12_13_00025_201318_1517807320331&sectionId=9697&sectionno=1). Retrying in 8.0s
+2025-11-23 12:25:16,597 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/show-data?actid=AC_CEN_12_13_00025_201318_1517807320331&sectionId=9697&sectionno=1 after 4 retries
+2025-11-23 12:25:16,679 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/13116). Retrying in 1.0s
+2025-11-23 12:25:20,758 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/13116). Retrying in 2.0s
+2025-11-23 12:25:24,814 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/13116). Retrying in 4.0s
+2025-11-23 12:25:28,879 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/13116). Retrying in 8.0s
+2025-11-23 12:25:36,881 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/handle/123456789/13116 after 4 retries
+2025-11-23 12:25:36,957 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/15269). Retrying in 1.0s
+2025-11-23 12:26:00,881 | WARNING | src.phase1_preprocessing.data_collector | Request failed (502 Server Error: Bad Gateway for url: https://www.indiacode.nic.in/handle/123456789/15269). Retrying in 2.0s
+2025-11-23 12:26:02,940 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/15269). Retrying in 4.0s
+2025-11-23 12:26:07,002 | WARNING | src.phase1_preprocessing.data_collector | Request failed (404 Client Error: Not Found for url: https://www.indiacode.nic.in/handle/123456789/15269). Retrying in 8.0s
+2025-11-23 12:26:15,003 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://www.indiacode.nic.in/handle/123456789/15269 after 4 retries
+2025-11-23 12:26:15,006 | INFO | src.phase1_preprocessing.data_collector | Collecting Indian Kanoon cases
+2025-11-23 12:30:05,031 | INFO | src.phase1_preprocessing.data_collector | Downloading CUAD contracts
+2025-11-23 12:30:09,665 | WARNING | src.phase1_preprocessing.data_collector | Request failed (401 Client Error: Unauthorized for url: https://huggingface.co/datasets/lxuechen/cuad/resolve/main/data.zip). Retrying in 1.0s
+2025-11-23 12:30:13,077 | WARNING | src.phase1_preprocessing.data_collector | Request failed (401 Client Error: Unauthorized for url: https://huggingface.co/datasets/lxuechen/cuad/resolve/main/data.zip). Retrying in 2.0s
+2025-11-23 12:30:17,025 | WARNING | src.phase1_preprocessing.data_collector | Request failed (401 Client Error: Unauthorized for url: https://huggingface.co/datasets/lxuechen/cuad/resolve/main/data.zip). Retrying in 4.0s
+2025-11-23 12:30:21,277 | WARNING | src.phase1_preprocessing.data_collector | Request failed (401 Client Error: Unauthorized for url: https://huggingface.co/datasets/lxuechen/cuad/resolve/main/data.zip). Retrying in 8.0s
+2025-11-23 12:30:29,279 | ERROR | src.phase1_preprocessing.data_collector | Giving up on https://huggingface.co/datasets/lxuechen/cuad/resolve/main/data.zip after 4 retries
+2025-11-23 12:30:29,279 | INFO | src.phase1_preprocessing.data_collector | Collection finished. 11 failures.
+2025-11-23 12:50:36,677 | INFO | src.phase1_preprocessing.data_collector | Collecting India Code acts
+2025-11-23 12:50:36,679 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Indian Penal Code 1860
+2025-11-23 12:50:36,681 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Code of Criminal Procedure 1973
+2025-11-23 12:50:36,682 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Code of Civil Procedure 1908
+2025-11-23 12:50:36,684 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Indian Evidence Act 1872
+2025-11-23 12:50:36,685 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Contract Act 1872
+2025-11-23 12:50:36,687 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Transfer of Property Act 1882
+2025-11-23 12:50:36,689 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Specific Relief Act 1963
+2025-11-23 12:50:36,692 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Companies Act 2013
+2025-11-23 12:50:36,694 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Information Technology Act 2000
+2025-11-23 12:50:36,695 | INFO | src.phase1_preprocessing.data_collector | Skipping existing act: Income Tax Act 1961
+2025-11-23 12:50:36,699 | INFO | src.phase1_preprocessing.data_collector | Collecting Indian Kanoon cases
+2025-11-23 12:50:37,919 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/123092336/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,919 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/160483121/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,919 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/124441483/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,922 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/89659000/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,923 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/41208502/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,924 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/128900/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,924 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/50958619/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,924 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/173069646/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,925 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/126914242/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:37,926 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/85501908/?formInput=contract%20termination%20Supreme%20Court
+2025-11-23 12:50:40,991 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1381285/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,992 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/142304648/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,992 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/128017297/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,994 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/141456448/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,994 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/3209857/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,995 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/15256613/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,996 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/146302413/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,996 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/82326684/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,996 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/78342224/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:40,998 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/157861/?formInput=property%20rights%20Supreme%20Court%20judgments
+2025-11-23 12:50:45,038 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/30424145/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,039 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/135095591/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,039 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/151222872/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,040 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1308127/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,040 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1480735/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,040 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/49791577/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,040 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1769219/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,042 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/132851/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,042 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/76993554/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:45,042 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/66487728/?formInput=IPC%20Section%20302%20interpretation
+2025-11-23 12:50:49,004 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/doc/981147/
+2025-11-23 12:50:49,006 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/doc/237570/
+2025-11-23 12:50:49,007 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/595099/?formInput=fundamental%20rights%20enforcement
+2025-11-23 12:50:49,007 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/doc/39266478/
+2025-11-23 12:50:49,007 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/165099707/?formInput=fundamental%20rights%20enforcement
+2025-11-23 12:50:49,007 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1735815/?formInput=fundamental%20rights%20enforcement
+2025-11-23 12:50:49,008 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/doc/149707294/
+2025-11-23 12:50:49,008 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/68529329/?formInput=fundamental%20rights%20enforcement
+2025-11-23 12:50:49,008 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/909486/?formInput=fundamental%20rights%20enforcement
+2025-11-23 12:50:49,009 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1436792/?formInput=fundamental%20rights%20enforcement
+2025-11-23 12:50:49,009 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/15521/?formInput=fundamental%20rights%20enforcement
+2025-11-23 12:50:53,155 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1223233/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,156 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/120098448/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,156 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/172594902/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,158 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1048577/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,158 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/86069677/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,158 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/185226167/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,159 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/38063720/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,159 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/37226832/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,159 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/198417772/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,160 | INFO | src.phase1_preprocessing.data_collector | Skipping existing case: https://indiankanoon.org/docfragment/1303933/?formInput=arbitration%20and%20conciliation%20act%20%20doctypes%3A%20judgments
+2025-11-23 12:50:53,160 | INFO | src.phase1_preprocessing.data_collector | Downloading CUAD contracts
+2025-11-23 12:50:53,160 | INFO | src.phase1_preprocessing.data_collector | CUAD file already exists: data.zip
+2025-11-23 12:50:53,161 | INFO | src.phase1_preprocessing.data_collector | Collection finished. 0 failures.

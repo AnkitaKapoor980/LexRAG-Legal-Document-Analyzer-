@@ -56,10 +56,15 @@ Outputs are persisted under `data/processed/` and `data/embeddings/` for reuse.
 
    Use `--force-refresh` to re-run collection or `--skip-embeddings` to stop after preprocessing.
 
+   You can also temporarily override the embedding model at runtime without editing `config.yaml` by setting the
+   `EMBEDDING_MODEL` environment variable or using the new `--embedding-model` CLI flag. If you change the model,
+   remember to rebuild embeddings (use `--force-refresh` or remove existing index files) because embedding vectors
+   and dimensions will differ between models.
+
 4. **Validate retrieval quality**
 
    ```bash
-   python scripts/test_retrieval.py --top-k 5
+   python scripts/run_retrieval.py --top-k 5
    ```
 
 ## Testing

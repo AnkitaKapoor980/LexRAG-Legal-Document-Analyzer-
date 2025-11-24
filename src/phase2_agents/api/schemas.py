@@ -90,7 +90,8 @@ class SummaryResponse(BaseModel):
 class QAResponse(BaseModel):
     """Q&A response."""
     answer: str = Field(..., description="Answer to the question")
-    sources: List[Dict[str, str]] = Field(..., description="Source citations")
+    # sources may include numeric similarity scores; accept any typing for safety
+    sources: List[Dict[str, Any]] = Field(..., description="Source citations")
     confidence: str = Field(..., description="Confidence level: high, medium, or low")
     notes: Optional[str] = Field(None, description="Additional notes")
 

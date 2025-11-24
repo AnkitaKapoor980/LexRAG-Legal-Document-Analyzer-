@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LexRAG — Simple UI</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>LexRAG — Simple Search</h1>
+      <form action="/search" method="post">
+        <label for="query">Enter query</label>
+        <input id="query" name="query" type="text" required placeholder="Ask about a law or case..." />
+        <label for="top_k">Top K</label>
+        <input id="top_k" name="top_k" type="number" value="5" min="1" max="20" />
+        <button type="submit">Search</button>
+      </form>
+      <section class="info">
+        <p>Notes: The backend expects a FAISS index and metadata in paths configured in `config.yaml`.</p>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Results — LexRAG</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Results</h1>
+      <a href="/">← New search</a>
+      <h2>Query</h2>
+      <p>{{ query }}</p>
+
+      {% if error %}
+      <div class="error">Error: {{ error }}</div>
+      {% endif %}
+
+      {% if results %}
+      <section class="results">
+        {% for r in results %}
+        <article class="result">
+          <header>
+            <strong>Score: {{ '%.4f'|format(r.similarity_score) }}</strong>
+            <span> Chunk: {{ r.chunk_id }}</span>
+          </header>
+          <p class="snippet">{{ r.text }}</p>
+          <pre class="meta">{{ r.metadata }}</pre>
+        </article>
+        {% endfor %}
+      </section>
+      {% else %}
+      <p>No results.</p>
+      {% endif %}
+    </main>
+  </body>
+</html>

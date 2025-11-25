@@ -70,8 +70,6 @@ LexRAG-Legal-Document-Analyzer/
 
 ---
 
-## Running the System
-
 ### One-command Launch (Backend + Frontend)
 
 ```powershell

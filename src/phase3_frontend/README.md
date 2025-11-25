@@ -1,73 +1,68 @@
-# Phase 3 — Simple Frontend (LexRAG)
+# Phase 3 — Streamlit Frontend
 
-This folder contains a minimal FastAPI-based UI to try retrieval locally. It is intentionally small and depends on the project's existing embedding/FAISS code.
+This folder contains the Streamlit web application for the LexRAG Legal Document Analyzer.
 
-Prerequisites
-- Python environment with the project's `requirements.txt` installed (see project root).
-- A built FAISS index and metadata (created by the phase 1 pipeline). The UI reads index paths from `config.yaml`.
+## Overview
 
+The Streamlit app provides an intuitive interface to:
+- Upload PDF contracts
+- Extract and analyze legal documents
+- View extracted clauses, risk analysis, and compliance checks
+- Ask questions about the contract using the Q&A agent
 
-Run locally (two options)
+## Running the Frontend
 
-Option A — Streamlit frontend (recommended for Phase 3 UX)
+### Option 1: Use the Unified Launcher (Recommended)
 
-1. From the project root, install requirements (if not already):
-
+From the project root:
 ```powershell
-pip install -r requirements.txt
-pip install streamlit pdfplumber
+python scripts/run_app.py
 ```
 
-2. Run the Streamlit app:
+This starts both the backend API and the Streamlit frontend together.
 
+### Option 2: Run Streamlit Manually
+
+If you need to run only the frontend:
 ```powershell
-streamlit run src/phase3_frontend/streamlit_app.py
+python -m streamlit run src/phase3_frontend/streamlit_app.py
 ```
 
-3. Open the URL Streamlit prints (usually `http://localhost:8501`).
+> **Note:** The backend API must be running on port 8000 for the frontend to work.
 
-Option B — FastAPI demo UI (keeps simple HTML pages)
+## Features
 
-1. Install requirements (if not already). If you plan to submit forms via HTML, either install `python-multipart` or use the Streamlit app.
+- **Document Upload**: Upload PDF contracts for analysis
+- **Analysis Dashboard**: View results in organized tabs:
+  - Summary
+  - Extracted Clauses
+  - Risk Analysis
+  - Compliance Checks
+  - Q&A Chat
+- **Backend Health Check**: Test connectivity to the API
+- **Clear Analysis**: Reset the current analysis
 
-```powershell
-pip install -r requirements.txt
-# If you want to use the HTML form UI via uvicorn, install the multipart helper:
-pip install python-multipart
-```
+## Configuration
 
-2. Start FastAPI demo UI (if you installed multipart):
+The app connects to the backend API at `http://localhost:8000` by default.
 
-```powershell
-uvicorn src.phase3_frontend.app:app --reload --port 8000
-```
+## Troubleshooting
 
-3. Open `http://localhost:8000` in your browser. The FastAPI demo will attempt to load the FAISS index configured in `config.yaml`.
+**"streamlit not found" error:**
+- Use `python -m streamlit` instead of just `streamlit`
+- Or add Python Scripts folder to your PATH (see main README)
 
-Notes
-- The Streamlit app follows the `PHASE3_HANDOFF.md` flow: upload PDF → extract text → call `/api/analyze-document` → display results in tabs and allow Q&A.
-- The FastAPI HTML UI is left available for quick index inspection; I modified it to avoid raising an import-time error when `python-multipart` is not installed.
+**Backend connection errors:**
+- Ensure the backend API is running on port 8000
+- Check the "Check Backend" button in the UI for diagnostics
 
-Notes
-- The UI loads the SentenceTransformer encoder during index load; expect model download time on first run.
-- This is a simple dev-facing UI — it is not hardened for production.
-# Phase 3 – Frontend Interface
+**Analysis timeout:**
+- Large documents may take time to process
+- Default timeout is 300 seconds (5 minutes)
 
-This folder is reserved for Member C, responsible for building the LexRAG user interface.
+## Dependencies
 
-## Data Inputs
-
-- Processed chunks: `data/processed/cleaned_texts/`
-- Metadata: `data/processed/metadata/`
-- Retrieval API: Use the Phase 2 agent layer (once available) or directly call `retrieve_documents` from `src.phase1_preprocessing.embedder`.
-
-## UX Guidelines
-
-- Display retrieved chunks with title, section, year, and chunk ID.
-- Provide citation links back to the original source URL.
-- Offer filters by document type (act, case, contract) and year.
-
-## Suggested Stack
-
-Feel free to choose any framework (React, Vue, FastAPI + HTMX, etc.) as long as it can consume the retrieval API. Keep frontend assets under this directory and document build steps in a local README.
-
+All dependencies are listed in the project's main `requirements.txt`:
+- `streamlit>=1.28.0`
+- `pdfplumber>=0.11.0`
+- `requests>=2.32.0`

@@ -5,6 +5,7 @@ from .risk_analyzer import RiskAnalyzer
 from .compliance_checker import ComplianceChecker
 from .summarizer import Summarizer
 from .qa_agent import QAAgent
+from .combined_analyzer import CombinedAnalyzer
 
 __all__ = [
     "ClauseExtractor",
@@ -12,5 +13,6 @@ __all__ = [
     "ComplianceChecker",
     "Summarizer",
     "QAAgent",
+    "CombinedAnalyzer",
 ]
 

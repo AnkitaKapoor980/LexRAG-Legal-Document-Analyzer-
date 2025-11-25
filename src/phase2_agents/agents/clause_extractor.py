@@ -17,8 +17,8 @@ class ClauseExtractor:
     """Extracts clauses from legal documents using LLM and regex."""
 
     def __init__(self):
-        """Initialize Clause Extractor."""
-        self.llm = get_llm_client()
+        """Initialize the clause extractor with LLM client."""
+        self.llm = get_llm_client(purpose="extraction")
 
     def extract(self, contract_text: str, use_llm: bool = True) -> List[Dict[str, Any]]:
         """
@@ -54,22 +54,22 @@ class ClauseExtractor:
         clauses = []
         patterns = {
             "termination": [
-                r"(?:termination|terminate|end of agreement).{0,200}",
-                r"(?:terminate|termination).{0,100}(?:notice|period|clause).{0,100}",
+                r"(?:termination|terminate|end of agreement).{0,1500}",
+                r"(?:terminate|termination).{0,500}(?:notice|period|clause).{0,1000}",
             ],
             "arbitration": [
-                r"(?:arbitration|arbitrate|arbitral).{0,200}",
-                r"(?:dispute|disagreement).{0,100}(?:arbitration|arbitrate).{0,100}",
+                r"(?:arbitration|arbitrate|arbitral).{0,1500}",
+                r"(?:dispute|disagreement).{0,500}(?:arbitration|arbitrate).{0,1000}",
             ],
             "liability": [
-                r"(?:liability|liable|indemnify|indemnification).{0,200}",
-                r"(?:limitation of liability|limited liability).{0,200}",
+                r"(?:liability|liable|indemnify|indemnification).{0,1500}",
+                r"(?:limitation of liability|limited liability).{0,1500}",
             ],
             "confidentiality": [
-                r"(?:confidential|confidentiality|non-disclosure|NDA).{0,200}",
+                r"(?:confidential|confidentiality|non-disclosure|NDA).{0,1500}",
             ],
             "payment": [
-                r"(?:payment|pay|fee|compensation|remuneration).{0,200}",
+                r"(?:payment|pay|fee|compensation|remuneration).{0,1500}",
             ],
         }
 
@@ -79,9 +79,10 @@ class ClauseExtractor:
                 for match in matches:
                     clause_text = match.group(0).strip()
                     if len(clause_text) > 20:  # Filter very short matches
+                        # Don't truncate - keep full clause text
                         clauses.append({
                             "clause_type": clause_type,
-                            "clause_text": clause_text[:500],  # Limit length
+                            "clause_text": clause_text,  # No truncation
                             "start_position": match.start(),
                             "importance": "medium",
                             "extraction_method": "regex",

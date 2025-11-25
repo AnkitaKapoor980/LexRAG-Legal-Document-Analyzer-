@@ -14,6 +14,19 @@ This document explains exactly how to integrate with Phase 2 backend.
 
 ## 🔌 Backend API Integration
 
+### One-command Launch (recommended)
+
+```powershell
+# Starts backend (FastAPI) and frontend (Streamlit)
+python scripts/run_app.py
+```
+
+This command launches the complete stack locally. Visit:
+- Backend docs: http://localhost:8000/docs
+- Streamlit UI: http://localhost:8501
+
+If you prefer to start services manually, follow the steps below.
+
 ### Starting the Backend
 
 **First, start the Phase 2 API server:**
@@ -28,7 +41,7 @@ python scripts/run_phase2_api.py
 uvicorn src.phase2_agents.api.main:app --reload --port 8000
 ```
 
-**Verify it's running:**
+**Verify backend manually:**
 - Visit: http://localhost:8000/docs
 - You should see Swagger UI with all API endpoints
 

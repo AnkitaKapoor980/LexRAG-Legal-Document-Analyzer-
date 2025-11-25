@@ -11,6 +11,7 @@ from .agents import (
     ComplianceChecker,
     Summarizer,
     QAAgent,
+    CombinedAnalyzer,
 )
 
 logger = logging.getLogger(__name__)
@@ -26,6 +27,7 @@ class AgentOrchestrator:
         self.compliance_checker = ComplianceChecker()
         self.summarizer = Summarizer()
         self.qa_agent = QAAgent()
+        self.combined_analyzer = CombinedAnalyzer()  # Batch analyzer
 
     def analyze_document(
         self,
@@ -48,6 +50,11 @@ class AgentOrchestrator:
         Returns:
             Complete analysis result
         """
+        logger.info("=" * 60)
+        logger.info("Starting document analysis pipeline")
+        logger.info(f"Document length: {len(contract_text)} characters")
+        logger.info("=" * 60)
+        
         result: Dict[str, Any] = {
             "document_length": len(contract_text),
             "clauses": [],
@@ -57,46 +64,63 @@ class AgentOrchestrator:
 
         # Step 1: Extract clauses
         if extract_clauses:
-            logger.info("Extracting clauses...")
+            logger.info("Step 1/4: Extracting clauses...")
+            import time
+            start_time = time.time()
             clauses = self.clause_extractor.extract(contract_text)
+            elapsed = time.time() - start_time
             result["clauses"] = clauses
             result["statistics"]["total_clauses"] = len(clauses)
+            logger.info(f"✓ Extracted {len(clauses)} clauses in {elapsed:.2f}s")
 
-            # Step 2: Analyze risks for each clause
-            if analyze_risks and clauses:
-                logger.info("Analyzing risks...")
-                clauses_with_risks = self.risk_analyzer.analyze_batch(clauses)
-                result["clauses"] = clauses_with_risks
+            # Step 2: Combined batch analysis (risk + compliance in ONE call)
+            if (analyze_risks or check_compliance) and clauses:
+                logger.info(f"Step 2/4: Batch analyzing {len(clauses)} clauses (risk + compliance)...")
+                start_time = time.time()
+                
+                # Single LLM call for all clauses
+                analyzed_clauses = self.combined_analyzer.analyze_batch(
+                    clauses,
+                    analyze_risks=analyze_risks,
+                    check_compliance=check_compliance
+                )
+                
+                elapsed = time.time() - start_time
+                result["clauses"] = analyzed_clauses
+                logger.info(f"✓ Batch analysis complete in {elapsed:.2f}s (1 LLM call for {len(clauses)} clauses)")
 
                 # Calculate risk statistics
-                risk_counts = {"low": 0, "medium": 0, "high": 0}
-                for clause in clauses_with_risks:
-                    risk_level = clause.get("risk_analysis", {}).get("risk_level", "medium")
-                    risk_counts[risk_level] = risk_counts.get(risk_level, 0) + 1
-                result["statistics"]["risk_distribution"] = risk_counts
-
-            # Step 3: Check compliance for each clause
-            if check_compliance and clauses:
-                logger.info("Checking compliance...")
-                clauses_with_compliance = self.compliance_checker.check_batch(
-                    result["clauses"] if "risk_analysis" in result["clauses"][0] else clauses
-                )
-                result["clauses"] = clauses_with_compliance
+                if analyze_risks:
+                    risk_counts = {"low": 0, "medium": 0, "high": 0}
+                    for clause in analyzed_clauses:
+                        if "risk_analysis" in clause:
+                            risk_level = clause["risk_analysis"].get("risk_level", "medium")
+                            risk_counts[risk_level] = risk_counts.get(risk_level, 0) + 1
+                    result["statistics"]["risk_distribution"] = risk_counts
+                    logger.info(f"  Risk distribution: {risk_counts}")
 
                 # Calculate compliance statistics
-                compliance_counts = {"compliant": 0, "non-compliant": 0, "requires_review": 0}
-                for clause in clauses_with_compliance:
-                    status = clause.get("compliance_check", {}).get("compliance_status", "requires_review")
-                    compliance_counts[status] = compliance_counts.get(status, 0) + 1
-                result["statistics"]["compliance_distribution"] = compliance_counts
+                if check_compliance:
+                    compliance_counts = {"compliant": 0, "non-compliant": 0, "requires_review": 0}
+                    for clause in analyzed_clauses:
+                        if "compliance_check" in clause:
+                            status = clause["compliance_check"].get("compliance_status", "requires_review")
+                            compliance_counts[status] = compliance_counts.get(status, 0) + 1
+                    result["statistics"]["compliance_distribution"] = compliance_counts
+                    logger.info(f"  Compliance distribution: {compliance_counts}")
 
-        # Step 4: Generate summary
+        # Step 3: Generate summary
         if generate_summary:
-            logger.info("Generating summary...")
+            logger.info("Step 3/3: Generating document summary...")
+            start_time = time.time()
             summary = self.summarizer.summarize(contract_text)
+            elapsed = time.time() - start_time
             result["summary"] = summary
+            logger.info(f"✓ Summary generated in {elapsed:.2f}s")
 
-        logger.info("Document analysis complete")
+        logger.info("=" * 60)
+        logger.info("✅ Document analysis complete!")
+        logger.info("=" * 60)
         return result
 
     def answer_question(self, question: str, clear_history: bool = False) -> Dict[str, Any]:

@@ -101,28 +101,31 @@ class LLMClient:
         time_since_last_request = current_time - _last_request_time
         if time_since_last_request < REQUEST_DELAY:
             sleep_time = REQUEST_DELAY - time_since_last_request
-            logger.debug(f"Rate limiting: sleeping for {sleep_time:.2f}s")
+            logger.info(f"⏱️  Rate limiting: waiting {sleep_time:.1f}s before next API call")
             time.sleep(sleep_time)
         
         try:
+            logger.info(f"🔄 Making LLM API call (model: {self.model_name})...")
             response = self.llm.invoke(prompt, **kwargs)
             _last_request_time = time.time()
+            logger.info(f"✓ LLM response received")
             return response.content if hasattr(response, "content") else str(response)
         except Exception as e:
             error_msg = str(e).lower()
             if "429" in error_msg or "rate limit" in error_msg:
                 # Rate limit hit - wait longer and retry once
-                logger.warning("Rate limit hit, waiting 5 seconds before retry...")
-                time.sleep(5)
+                logger.warning("⚠️  Rate limit hit! Waiting 10 seconds before retry...")
+                time.sleep(10)
                 try:
                     response = self.llm.invoke(prompt, **kwargs)
                     _last_request_time = time.time()
+                    logger.info(f"✓ LLM response received (after retry)")
                     return response.content if hasattr(response, "content") else str(response)
                 except Exception as retry_error:
-                    logger.error(f"LLM invocation failed after retry: {retry_error}")
+                    logger.error(f"❌ LLM invocation failed after retry: {retry_error}")
                     raise
             else:
-                logger.error(f"LLM invocation failed: {e}")
+                logger.error(f"❌ LLM invocation failed: {e}")
                 raise
 
     def get_llm(self) -> BaseChatModel:
@@ -130,14 +133,55 @@ class LLMClient:
         return self.llm
 
 
+
 # Global instance (lazy initialization)
-_global_llm_client: Optional[LLMClient] = None
+_global_llm_clients: dict[str, Optional[LLMClient]] = {
+    "extraction": None,
+    "analysis": None,
+    "summary": None,
+    "qa": None,
+}
 
 
-def get_llm_client() -> LLMClient:
-    """Get or create global LLM client instance."""
-    global _global_llm_client
-    if _global_llm_client is None:
-        _global_llm_client = LLMClient()
-    return _global_llm_client
+def get_llm_client(purpose: str = "analysis") -> LLMClient:
+    """
+    Get or create LLM client instance for specific purpose.
+    
+    Uses multiple API keys to distribute load and avoid rate limits:
+    - extraction: GROQ_API_KEY1
+    - analysis: GROQ_API_KEY2
+    - summary: GROQ_API_KEY1
+    - qa: GROQ_API_KEY2
+    
+    Args:
+        purpose: One of "extraction", "analysis", "summary", "qa"
+    
+    Returns:
+        LLMClient instance with appropriate API key
+    """
+    global _global_llm_clients
+    
+    if purpose not in _global_llm_clients:
+        purpose = "analysis"  # Default fallback
+    
+    if _global_llm_clients[purpose] is None:
+        # Determine which API key to use
+        if purpose in ["extraction", "summary"]:
+            api_key = os.getenv("GROQ_API_KEY1") or os.getenv("GROQ_API_KEY")
+            key_name = "GROQ_API_KEY1" if os.getenv("GROQ_API_KEY1") else "GROQ_API_KEY"
+        else:  # analysis, qa
+            api_key = os.getenv("GROQ_API_KEY2") or os.getenv("GROQ_API_KEY")
+            key_name = "GROQ_API_KEY2" if os.getenv("GROQ_API_KEY2") else "GROQ_API_KEY"
+        
+        if not api_key:
+            # Fallback to main key if specific keys not found
+            api_key = os.getenv("GROQ_API_KEY")
+            key_name = "GROQ_API_KEY"
+            if not api_key:
+                raise ValueError("No GROQ API keys found in environment variables")
+        
+        _global_llm_clients[purpose] = LLMClient(api_key=api_key)
+        logger.info(f"✓ Initialized LLM client for '{purpose}' using {key_name}")
+    
+    return _global_llm_clients[purpose]
 

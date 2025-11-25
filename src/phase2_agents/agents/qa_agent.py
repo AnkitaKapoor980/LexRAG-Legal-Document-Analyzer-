@@ -24,7 +24,7 @@ class QAAgent:
         Args:
             top_k: Number of context chunks to retrieve
         """
-        self.llm = get_llm_client()
+        self.llm = get_llm_client(purpose="qa")
         self.retriever = get_retriever(top_k=top_k)
         self.conversation_history: List[Dict[str, str]] = []
 
@@ -35,7 +35,7 @@ class QAAgent:
         clear_history: bool = False,
     ) -> Dict[str, Any]:
         """
-        Answer a legal question using RAG.
+        Answer a legal question using LLM.
 
         Args:
             question: The question to answer
@@ -56,25 +56,18 @@ class QAAgent:
                 "notes": "Empty question provided",
             }
 
-        # Retrieve relevant legal context
-        legal_context_results = self.retriever.retrieve(question, top_k=self.retriever.top_k)
-        legal_context = self.retriever.format_context(legal_context_results, max_length=2500)
-
         # Build context with history if enabled
-        context_with_history = legal_context
+        context = ""
         if use_history and self.conversation_history:
             history_text = "\n".join([
                 f"Q: {h['question']}\nA: {h['answer']}"
                 for h in self.conversation_history[-3:]  # Last 3 exchanges
             ])
-            context_with_history = f"Previous conversation:\n{history_text}\n\nCurrent context:\n{legal_context}"
+            context = f"Previous conversation:\n{history_text}\n\n"
 
-        # Use LLM to generate answer
+        # Use LLM to generate answer (without RAG retrieval)
         try:
-            result = self._answer_with_llm(question, context_with_history)
-            # Add citations from retrieved chunks
-            citations = self.retriever.get_citations(legal_context_results)
-            result["sources"] = citations
+            result = self._answer_with_llm_simple(question, context)
 
             # Update conversation history
             if use_history:
@@ -85,8 +78,13 @@ class QAAgent:
 
             return result
         except Exception as e:
-            logger.warning(f"LLM Q&A failed: {e}")
-            return self._answer_with_heuristic(question, legal_context_results)
+            logger.error(f"LLM Q&A failed: {e}")
+            return {
+                "answer": "I encountered an error processing your question. Please try again.",
+                "sources": [],
+                "confidence": "low",
+                "notes": f"Error: {str(e)}",
+            }
 
     def clear_history(self):
         """Clear conversation history."""
@@ -128,6 +126,28 @@ class QAAgent:
                 "confidence": "low",
                 "notes": "Error in response parsing",
             }
+
+    def _answer_with_llm_simple(self, question: str, conversation_context: str = "") -> Dict[str, Any]:
+        """Generate answer using LLM without RAG (simple chatbot mode)."""
+        
+        # Simple prompt for general legal questions
+        prompt = f"""You are a helpful legal assistant specializing in Indian law. Answer the user's question clearly and concisely.
+
+{conversation_context}Current question: {question}
+
+Provide a helpful answer about Indian law, legal concepts, or general legal advice. If the question is about signing a contract or making legal decisions, advise consulting with a qualified lawyer.
+
+Answer the question directly and conversationally. Be helpful and informative."""
+
+        response = self.llm.invoke(prompt)
+        
+        # Return simple response (no JSON parsing needed)
+        return {
+            "answer": response.strip(),
+            "sources": [],
+            "confidence": "medium",
+            "notes": "General legal information - consult a lawyer for specific advice",
+        }
 
     def _answer_with_heuristic(
         self, question: str, legal_context_results: List[Dict[str, Any]]

@@ -74,7 +74,9 @@ class ComplianceChecker:
             List of clauses with added 'compliance_check' field
         """
         results = []
-        for clause in clauses:
+        total = len(clauses)
+        for i, clause in enumerate(clauses, 1):
+            logger.info(f"  Checking compliance for clause {i}/{total}...")
             clause_text = clause.get("clause_text", "")
             clause_type = clause.get("clause_type", "unknown")
             compliance_check = self.check(clause_text, clause_type)

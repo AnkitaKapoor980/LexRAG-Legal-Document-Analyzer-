@@ -7,6 +7,8 @@ import logging
 import sys
 from pathlib import Path
 
+import pytest
+
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
@@ -36,8 +38,8 @@ This Agreement is entered into between Company ABC ("Client") and Service Provid
 """
 
 
-def test_clause_extractor():
-    """Test clause extractor."""
+def run_clause_extractor():
+    """Run clause extractor."""
     logger.info("Testing Clause Extractor...")
     extractor = ClauseExtractor()
     clauses = extractor.extract(SAMPLE_CONTRACT)
@@ -47,8 +49,8 @@ def test_clause_extractor():
     return len(clauses) > 0
 
 
-def test_risk_analyzer():
-    """Test risk analyzer."""
+def run_risk_analyzer():
+    """Run risk analyzer."""
     logger.info("Testing Risk Analyzer...")
     analyzer = RiskAnalyzer()
     result = analyzer.analyze("Termination clause with 30 days notice", "termination")
@@ -56,8 +58,8 @@ def test_risk_analyzer():
     return result.get("risk_level") in ["low", "medium", "high"]
 
 
-def test_compliance_checker():
-    """Test compliance checker."""
+def run_compliance_checker():
+    """Run compliance checker."""
     logger.info("Testing Compliance Checker...")
     checker = ComplianceChecker()
     result = checker.check("Arbitration clause", "arbitration")
@@ -65,8 +67,8 @@ def test_compliance_checker():
     return result.get("compliance_status") in ["compliant", "non-compliant", "requires_review"]
 
 
-def test_summarizer():
-    """Test summarizer."""
+def run_summarizer():
+    """Run summarizer."""
     logger.info("Testing Summarizer...")
     summarizer = Summarizer()
     result = summarizer.summarize(SAMPLE_CONTRACT)
@@ -74,8 +76,8 @@ def test_summarizer():
     return result.get("summary") is not None
 
 
-def test_qa_agent():
-    """Test Q&A agent."""
+def run_qa_agent():
+    """Run Q&A agent."""
     logger.info("Testing Q&A Agent...")
     qa = QAAgent()
     result = qa.answer("What is the Indian Contract Act?")
@@ -83,8 +85,8 @@ def test_qa_agent():
     return result.get("answer") is not None
 
 
-def test_orchestrator():
-    """Test full orchestrator."""
+def run_orchestrator():
+    """Run full orchestrator."""
     logger.info("Testing Orchestrator...")
     orch = get_orchestrator()
     result = orch.analyze_document(
@@ -107,12 +109,12 @@ def main():
     logger.info("=" * 50)
 
     tests = [
-        ("Clause Extractor", test_clause_extractor),
-        ("Risk Analyzer", test_risk_analyzer),
-        ("Compliance Checker", test_compliance_checker),
-        ("Summarizer", test_summarizer),
-        ("Q&A Agent", test_qa_agent),
-        ("Orchestrator", test_orchestrator),
+        ("Clause Extractor", run_clause_extractor),
+        ("Risk Analyzer", run_risk_analyzer),
+        ("Compliance Checker", run_compliance_checker),
+        ("Summarizer", run_summarizer),
+        ("Q&A Agent", run_qa_agent),
+        ("Orchestrator", run_orchestrator),
     ]
 
     results = []
@@ -137,6 +139,30 @@ def main():
     logger.info(f"\n{passed_count}/{len(results)} tests passed")
 
     return all(passed for _, passed, _ in results)
+
+
+def test_clause_extractor():
+    assert run_clause_extractor()
+
+
+def test_risk_analyzer():
+    assert run_risk_analyzer()
+
+
+def test_compliance_checker():
+    assert run_compliance_checker()
+
+
+def test_summarizer():
+    assert run_summarizer()
+
+
+def test_qa_agent():
+    assert run_qa_agent()
+
+
+def test_orchestrator():
+    assert run_orchestrator()
 
 
 if __name__ == "__main__":

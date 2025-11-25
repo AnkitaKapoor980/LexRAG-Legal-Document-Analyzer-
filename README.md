@@ -2,7 +2,7 @@
 
 A Retrieval-Augmented Generation (RAG) system for analyzing Indian legal documents, extracting clauses, assessing risks, checking compliance, and answering legal questions.
 
-## 🎯 Project Overview
+## Project Overview
 
 **LexRAG** is a three-phase legal document analysis system:
 
@@ -12,7 +12,7 @@ A Retrieval-Augmented Generation (RAG) system for analyzing Indian legal documen
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 LexRAG-Legal-Document-Analyzer/
@@ -37,7 +37,7 @@ LexRAG-Legal-Document-Analyzer/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -62,56 +62,24 @@ LexRAG-Legal-Document-Analyzer/
    ```
 
 4. **Set up environment variables**:
-   Create `.env` file in project root.
+   Create `.env` file in project root:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   GROQ_MODEL=llama-3.1-8b-instant
+   ```
 
 ---
 
-## 📚 Documentation
+## Running the System
 
-See **[docs/README.md](docs/README.md)** for complete documentation:
-
-- **[Phase 1 Start Guide](docs/PHASE1_START.md)** - Run data pipeline
-- **[Phase 2 Quick Start](docs/PHASE2_QUICKSTART.md)** - API setup and usage
-- **[Phase 3 Integration Guide](docs/PHASE3_HANDOFF.md)** - Frontend integration
-
----
-
-## 🏃 Running the System
-
-### Phase 1: Data Pipeline (Already Complete)
+### One-command Launch (Backend + Frontend)
 
 ```powershell
-# Run Phase 1 pipeline (if needed)
-python scripts/run_phase1_pipeline.py --force-refresh
+# Starts FastAPI backend and Streamlit UI
+python scripts/run_app.py
 
-# Test retrieval
-python scripts/run_retrieval.py --top-k 5
+# Frontend: http://localhost:8501
 ```
-
-### Phase 2: Start API Backend
-
-```powershell
-# Start FastAPI server
-python scripts/run_phase2_api.py
-
-# API will be available at:
-# http://localhost:8000/docs
-```
-
-### Phase 3: Frontend 
-```powershell
-# streamlit run src/phase3_frontend/app.py
-```
-
----
-
-## Configuration
-
-Edit `config.yaml` to adjust:
-- Embedding model
-- Chunk sizes
-- Data sources
-- Paths
 
 ---
 
@@ -119,6 +87,6 @@ Edit `config.yaml` to adjust:
 
 - **Phase 1**: spaCy, sentence-transformers, FAISS, BeautifulSoup
 - **Phase 2**: LangChain, Groq API, FastAPI, Pydantic
-- **Phase 3**: Streamlit (planned)
+- **Phase 3**: Streamlit 
 
 

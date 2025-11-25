@@ -8,9 +8,9 @@ import logging
 import time
 from datetime import datetime
 from pathlib import Path
-
 import sys
-from pathlib import Path
+
+import pytest
 
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent
@@ -215,8 +215,8 @@ class TestReport:
         return report
 
 
-def test_clause_extractor(report: TestReport):
-    """Test clause extractor with real contract."""
+def run_clause_extractor(report: TestReport) -> list:
+    """Run clause extractor with real contract."""
     logger.info("="*60)
     logger.info("TEST 1: Clause Extractor")
     logger.info("="*60)
@@ -252,8 +252,8 @@ def test_clause_extractor(report: TestReport):
         return []
 
 
-def test_risk_analyzer(report: TestReport, clauses: list):
-    """Test risk analyzer."""
+def run_risk_analyzer(report: TestReport, clauses: list) -> list:
+    """Run risk analyzer."""
     logger.info("="*60)
     logger.info("TEST 2: Risk Analyzer")
     logger.info("="*60)
@@ -301,8 +301,8 @@ def test_risk_analyzer(report: TestReport, clauses: list):
         return []
 
 
-def test_compliance_checker(report: TestReport, clauses: list):
-    """Test compliance checker."""
+def run_compliance_checker(report: TestReport, clauses: list) -> list:
+    """Run compliance checker."""
     logger.info("="*60)
     logger.info("TEST 3: Compliance Checker")
     logger.info("="*60)
@@ -352,8 +352,8 @@ def test_compliance_checker(report: TestReport, clauses: list):
         return []
 
 
-def test_summarizer(report: TestReport):
-    """Test summarizer."""
+def run_summarizer(report: TestReport) -> dict:
+    """Run summarizer."""
     logger.info("="*60)
     logger.info("TEST 4: Summarizer")
     logger.info("="*60)
@@ -385,8 +385,8 @@ def test_summarizer(report: TestReport):
         return {}
 
 
-def test_qa_agent(report: TestReport):
-    """Test Q&A agent."""
+def run_qa_agent(report: TestReport) -> list:
+    """Run Q&A agent."""
     logger.info("="*60)
     logger.info("TEST 5: Q&A Agent")
     logger.info("="*60)
@@ -430,8 +430,8 @@ def test_qa_agent(report: TestReport):
         return []
 
 
-def test_full_pipeline(report: TestReport):
-    """Test full orchestrator pipeline."""
+def run_full_pipeline(report: TestReport) -> dict:
+    """Run full orchestrator pipeline."""
     logger.info("="*60)
     logger.info("TEST 6: Full Document Analysis Pipeline")
     logger.info("="*60)
@@ -489,6 +489,66 @@ def test_full_pipeline(report: TestReport):
         return {}
 
 
+@pytest.fixture(scope="module")
+def test_report():
+    return TestReport()
+
+
+@pytest.fixture(scope="module")
+def clauses(test_report):
+    return run_clause_extractor(test_report)
+
+
+@pytest.fixture(scope="module")
+def risk_results(test_report, clauses):
+    return run_risk_analyzer(test_report, clauses)
+
+
+@pytest.fixture(scope="module")
+def compliance_results(test_report, clauses):
+    return run_compliance_checker(test_report, clauses)
+
+
+@pytest.fixture(scope="module")
+def summary_result(test_report):
+    return run_summarizer(test_report)
+
+
+@pytest.fixture(scope="module")
+def qa_answers(test_report):
+    return run_qa_agent(test_report)
+
+
+@pytest.fixture(scope="module")
+def full_pipeline_result(test_report):
+    return run_full_pipeline(test_report)
+
+
+def test_clause_extractor(clauses):
+    assert len(clauses) > 0
+
+
+def test_risk_analyzer(risk_results):
+    assert len(risk_results) > 0
+
+
+def test_compliance_checker(compliance_results):
+    assert len(compliance_results) > 0
+
+
+def test_summarizer(summary_result):
+    assert summary_result.get("summary")
+
+
+def test_qa_agent(qa_answers):
+    assert len(qa_answers) >= 3
+
+
+def test_full_pipeline(full_pipeline_result):
+    assert len(full_pipeline_result.get("clauses", [])) > 0
+    assert full_pipeline_result.get("summary") is not None
+
+
 def main():
     """Run comprehensive tests."""
     report = TestReport()
@@ -497,22 +557,22 @@ def main():
     logger.info(f"Testing with real contract ({len(REAL_CONTRACT)} characters)")
     
     # Run tests sequentially with delays
-    clauses = test_clause_extractor(report)
+    clauses = run_clause_extractor(report)
     time.sleep(2)  # Delay between tests
     
-    analyzed_clauses = test_risk_analyzer(report, clauses)
+    analyzed_clauses = run_risk_analyzer(report, clauses)
     time.sleep(2)
     
-    checked_clauses = test_compliance_checker(report, clauses)
+    checked_clauses = run_compliance_checker(report, clauses)
     time.sleep(2)
     
-    summary = test_summarizer(report)
+    summary = run_summarizer(report)
     time.sleep(2)
     
-    qa_results = test_qa_agent(report)
+    qa_results = run_qa_agent(report)
     time.sleep(3)  # Longer delay before full pipeline
     
-    full_result = test_full_pipeline(report)
+    full_result = run_full_pipeline(report)
     
     # Generate and print report
     final_report = report.print_report()

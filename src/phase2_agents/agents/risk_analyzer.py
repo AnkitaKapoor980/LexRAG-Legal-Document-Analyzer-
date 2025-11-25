@@ -75,7 +75,9 @@ class RiskAnalyzer:
             List of clauses with added 'risk_analysis' field
         """
         results = []
-        for clause in clauses:
+        total = len(clauses)
+        for i, clause in enumerate(clauses, 1):
+            logger.info(f"  Analyzing risk for clause {i}/{total}...")
             clause_text = clause.get("clause_text", "")
             clause_type = clause.get("clause_type", "unknown")
             risk_analysis = self.analyze(clause_text, clause_type)

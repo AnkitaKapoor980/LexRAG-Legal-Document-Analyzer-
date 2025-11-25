@@ -141,3 +141,16 @@ Return your response as JSON:
 
 Only return valid JSON, no additional text."""
 
+# Combined Batch Analysis Prompt (used by CombinedAnalyzer)
+COMBINED_BATCH_ANALYSIS_PROMPT = """You are a legal document analyzer. Analyze the following contract clauses.
+
+For EACH clause, provide:
+{analysis_tasks}
+
+CLAUSES TO ANALYZE:
+{clauses_list}
+
+IMPORTANT: Return a valid JSON array with exactly {clause_count} objects, one per clause in the EXACT same order.
+
+Return ONLY the JSON array, no other text.
+"""

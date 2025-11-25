@@ -24,7 +24,7 @@ class Summarizer:
         Args:
             top_k: Number of legal context chunks to retrieve
         """
-        self.llm = get_llm_client()
+        self.llm = get_llm_client(purpose="summary")
         self.retriever = get_retriever(top_k=top_k)
 
     def summarize(self, contract_text: str, query: str = "contract summary") -> Dict[str, Any]:

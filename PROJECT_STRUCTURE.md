@@ -40,8 +40,10 @@ LexRAG-Legal-Document-Analyzer/
 │   │       ├── main.py
 │   │       └── schemas.py
 │   │
-│   └── phase3_frontend/            # Phase 3: Frontend (to be built)
-│       └── README.md
+│   └── phase3_frontend/            # Phase 3: Streamlit Frontend
+│       ├── README.md               # Phase 3 specific docs
+│       └── streamlit_app.py        # Streamlit web application
+│
 │
 ├── 📂 data/                        # Data files
 │   ├── raw/                        # Raw documents
@@ -59,7 +61,8 @@ LexRAG-Legal-Document-Analyzer/
 ├── 📂 scripts/                     # Utility scripts
 │   ├── run_phase1_pipeline.py      # Phase 1 runner
 │   ├── run_phase2_api.py           # Phase 2 API server
-│   └── run_retrieval.py            # Retrieval testing
+│   ├── run_retrieval.py            # Retrieval testing
+│   └── run_app.py                  # Launch backend + frontend together
 │
 ├── 📂 tests/                       # Test files
 │   ├── phase1/                     # Phase 1 tests
@@ -102,7 +105,7 @@ LexRAG-Legal-Document-Analyzer/
    - Phase 1 setup and usage
    - Data pipeline instructions
 
-4. **docs/PHASE2_START.md**
+4. **docs/PHASE2_QUICKSTART.md**
    - Phase 2 setup
    - API usage
    - Testing instructions

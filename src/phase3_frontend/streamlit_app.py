@@ -73,7 +73,7 @@ def main() -> None:
     with st.sidebar:
         st.header("Controls")
         
-        if st.button("🔄 Clear Analysis", use_container_width=True):
+        if st.button("Clear Analysis", use_container_width=True):
             st.session_state.pop("analysis_result", None)
             st.session_state.pop("messages", None)
             st.rerun()
@@ -431,7 +431,7 @@ def main() -> None:
     with tab_qa:
         st.subheader("Legal Q&A Assistant")
         st.markdown("Ask general questions about Indian law, legal concepts, or contract terms.")
-        st.info("💡 This is a general legal assistant. For specific legal advice, consult a qualified lawyer.")
+        st.info("NOTE: This is a general legal assistant. For specific legal advice, consult a qualified lawyer.")
         
         # Initialize messages
         if "messages" not in st.session_state:
